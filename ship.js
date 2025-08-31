@@ -2,16 +2,28 @@
 export class Ship{
     constructor(hp, x,y, direction){
         this.hp = hp;
-        this.positionX = x;
-        this.positionY = y;
         this.direction = direction;
+        this.positionSet =  new Set();
+
+        if (this.direction == "vertical"){
+            for (let i = 0; i < this.hp; i++){
+                this.positionSet.add(8*(y + i) + x);
+            }
+        }
+        if (this.direction == "horizontal"){
+            for (let i = 0; i < this.hp; i++){
+                this.positionSet.add(y*8 + i + x);
+            }
+        }
     }
 
     hit(){
         this.hp --;
     }
     isSunk(){
-        if (this.hp <= 0){return true;}
+        if (this.hp <= 0){
+            console.log("me hundieron")
+            return true;}
         return false;
     }
 }
