@@ -1,5 +1,5 @@
 import { Ship } from "./ship.js";
-class GameBoard{
+export class GameBoard{
 
     constructor(){
         this.board = new Array(64);
@@ -35,27 +35,25 @@ class GameBoard{
 
     receiveAttack(x,y){
         let pos = (y*8 + x);
+        if (this.board[pos] != 0){ return false;}
         for (let ship of this.lista){
             if (ship.positionSet.has(pos)){
                 console.log("golpe");
                 this.board[pos] = "V";
-                 ship.hit();
-                ship.isSunk();
-                return;
+                ship.hit();
+                this.gameOver();
+                return true;
             }
         }
         this.board[pos] = "x";
-        
+        return true;
 
     }
+    gameOver(){
+        for(let ship of this.lista){
+            if (ship.sunk == false){return;}
+            console.log("juego terminado");
+            return;
+        }
+    }
 }
-
-let tablero = new GameBoard;
-tablero.addShip(4,5,2,"vertical");
-tablero.addShip(3,2,2,"horizontal");
-
-tablero.receiveAttack(4,2);
-tablero.receiveAttack(5,2);
-tablero.receiveAttack(2,2);
-tablero.receiveAttack(3,2);
-tablero.displayBoard();

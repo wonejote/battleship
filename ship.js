@@ -4,6 +4,7 @@ export class Ship{
         this.hp = hp;
         this.direction = direction;
         this.positionSet =  new Set();
+        this.sunk = false;
 
         if (this.direction == "vertical"){
             for (let i = 0; i < this.hp; i++){
@@ -19,11 +20,13 @@ export class Ship{
 
     hit(){
         this.hp --;
+        this.isSunk();
     }
     isSunk(){
         if (this.hp <= 0){
             console.log("me hundieron")
-            return true;}
+            this.sunk = true;
+            return;}
         return false;
     }
 }
