@@ -5,6 +5,9 @@ const form = new FormInicial();
 //----------------------------------------------
 const body = document.querySelector("body");
 const board = document.createElement("div");
+const spanHp = document.querySelector(".hp");
+const spanX = document.querySelector(".x");
+const spanY = document.querySelector(".y");
 board.classList.add("board");
 
 for (let i = 0; i <64; i++){
@@ -65,6 +68,7 @@ const barcos = document.querySelectorAll(".barco");
 barcos.forEach(barco => {
 barco.addEventListener("click",()=>{
     form.setHp(barco.dataset.hp);
+    spanHp.innerText = "hp: " + form.hp;
 })
 
 })
@@ -75,12 +79,45 @@ barco.addEventListener("click",()=>{
 const casillas = document.querySelectorAll(".casilla");
 
 casillas.forEach(casilla => {
-    casilla.addEventListener("click", () => {
-        form.setX(casilla.dataset.index);
-        form.setY(casilla.dataset.index);
-        form.addPosicion()
-    });
+  casilla.addEventListener("click", () => {
+    form.setX(casilla.dataset.index);
+    form.setY(casilla.dataset.index);
+    form.addPosicion();
+    spanX.innerText = "x: " + form.x;
+    spanY.innerText = "y: " + form.y;
+  });
+
+  casilla.addEventListener("mouseenter", () => {
+    iluminar(Number(casilla.dataset.index), form.hp, form.direccion);
+  });
+
+  casilla.addEventListener("mouseleave", () => {
+    casillas.forEach(c => c.style.backgroundColor = "aqua"); // resetear colores
+  });
 });
-//-------------------------------------------------
 
+function iluminar(index, hp, direccion) {
+  if (direccion === "horizontal") {
+    let y = Math.floor(index / 8);
+    let x = index % 8;
 
+    for (let i = 0; i < hp; i++) {
+      if (x + i < 8) { // no pasar de la fila
+        casillas[8*y + (x+i)].style.backgroundColor = "green";
+      }
+    }
+  }
+
+  if (direccion === "vertical") {
+  let y = Math.floor(index / 8);
+  let x = index % 8;
+
+  for (let i = 0; i < hp; i++) {
+    if (y + i < 8) { // no pasar de la última fila
+      casillas[8 * (y + i) + x].style.backgroundColor = "green";
+    }
+  }
+}
+
+}
+//---------------------
