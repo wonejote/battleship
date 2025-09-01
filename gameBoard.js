@@ -10,24 +10,27 @@ export class GameBoard{
     addShip(hp,x,y,direction){
         if (direction == "vertical"){
             for (let i = 0; i < hp; i++){
-                if (y + i >= 8 ){return;} 
-                if(this.board[8*(y + i) + x] !== 0  ){return;}}
+                if (y + i >= 8 ){return false;} 
+                if(this.board[8*(y + i) + x] !== 0  ){return false;}}
             for (let i = 0; i < hp; i++){
                 this.board[(8*(y + i) + x)] = 1;}
             let newShip = new Ship(hp,x,y,"vertical");
             this.lista.push(newShip);
+            return true;
         }
         if (direction == "horizontal"){
             for (let i = 0; i < hp; i++){
-                if (x+i >= 8) {return}
-                if(this.board[8*(y) + x+i] !== 0){ return;}
+                if (x+i >= 8) {return false}
+                if(this.board[8*(y) + x+i] !== 0){ return false;}
             }
             for (let i = 0; i < hp; i++){
                 this.board[(8*y  + x+i)] = 1;}
             let newShip = new Ship(hp,x,y,"horizontal");
             this.lista.push(newShip);
+            return true;
             
         }
+        return false;
     }
     displayBoard(){
         for (let i = 0; i < this.board.length; i += 8) {

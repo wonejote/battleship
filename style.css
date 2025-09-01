@@ -1,6 +1,4 @@
-body{
-    background: green;
-}
+
 
 .board{
     display: flex;
@@ -19,4 +17,25 @@ body{
 }
 .casilla:hover{
     background-color: brown;
+}
+
+.barco{
+    height: 32px;
+    background-color: darkolivegreen;
+    margin: 4px;
+}
+.barco1{
+    width: calc(5*32px);
+}
+.barco2{
+    width: calc(4*32px);
+}
+.barco3{
+    width: calc(3*32px);
+}
+.barco4{
+    width: calc(3*32px);
+}
+.barco5{
+    width: calc(2*32px);
 }
