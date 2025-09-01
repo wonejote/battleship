@@ -6,7 +6,7 @@ class Player{
     }
 }
 
-class Game{
+export class Game{
     constructor(){
         this.jugador = new Player();
         this.enemy = new Player();
@@ -31,23 +31,3 @@ class Game{
     }
 }
 
-let game = new Game();
-
-game.jugador.gameBoard.addShip(5,3,2,"horizontal");
-game.jugador.gameBoard.addShip(4,4,1,"horizontal");
-game.jugador.gameBoard.addShip(5,0,0,"vertical");
-game.jugador.gameBoard.addShip(3,7,3,"vertical");
-
-game.enemy.gameBoard.addShip(5,2,3,"horizontal");
-game.enemy.gameBoard.addShip(4,1,7,"horizontal");
-game.enemy.gameBoard.addShip(5,0,0,"vertical");
-game.enemy.gameBoard.addShip(3,7,0,"vertical");
-
-game.attack(0,0);
-game.attack(2,4);
-game.attack(2,4);
-game.attack(2,4);
-game.attack(2,0);
-game.attack(1,4);
-game.attack(3,4);
-game.estado();

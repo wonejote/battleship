@@ -1,3 +1,22 @@
 body{
     background: green;
 }
+
+.board{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    height: 256px;
+    width: 256px;
+    background-color: aliceblue;
+}
+.casilla{
+    box-sizing:border-box;
+    height: 32px;
+    width: 32px;
+    background-color: aqua;
+    border: 1px solid black;
+}
+.casilla:hover{
+    background-color: brown;
+}
